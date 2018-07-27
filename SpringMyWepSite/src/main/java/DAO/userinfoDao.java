@@ -82,16 +82,18 @@ public class userinfoDao {
 		
 	}
 	
-	public String selectUserName(Connection conn,String id) throws SQLException {		
+	
+	//방명록에서 삭제할때 네임으로 받아감
+	//받아가는 방법 바꾸기	
+	public ResultSet selectLoginUser(Connection conn,String id) throws SQLException {		
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
-		String sql="select name from userinfo where id=?";
+		String sql="select id,pw,name,birth,gender,phone,nvl(email,'없음'),imgname from userinfo where id=?";
 		try {
 		pstmt=conn.prepareStatement(sql);
 		pstmt.setString(1, id);
 		rs=pstmt.executeQuery();
-		rs.next();
-		return rs.getString(1);
+		return rs;
 		}finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);

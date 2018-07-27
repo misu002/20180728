@@ -1,6 +1,7 @@
 package Services;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -30,14 +31,14 @@ public class GetUserService {
 		}
 	}
 	
-	public String getUserName(String id) throws ServiceException {
+	public ResultSet getLoginUser(String id) throws ServiceException {
 		Connection conn=null;
 		String userName="";
+		ResultSet rs=null;
 		try {
 		conn = ConnectionProvider.getConnection();
-		userName=userinfodao.selectUserName(conn,id);
-		
-		return userName;
+		rs=userinfodao.selectLoginUser(conn,id);		
+		return rs;
 		} catch (SQLException e) {
 			throw new ServiceException("메시지 목록 구하기 실패: " + e.getMessage(), e);
 		} finally {

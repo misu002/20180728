@@ -16,7 +16,13 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<!-- css폴더등록하기위해서  /css 요청이 들어오면 /css/안에 있는 자원에 직접 접근하겠다, 자원으로 사용하겠다-->
 	<resources mapping="/css/**" location="/css/" />
-
+	
+		<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding">
+			<beans:value>utf-8</beans:value>
+		</beans:property>
+	</beans:bean>
 
 
 
@@ -33,4 +39,5 @@
 	<beans:bean id="userinfoDao" class="DAO.userinfoDao"></beans:bean>
 	<beans:bean id="MessageDao" class="DAO.MessageDao"></beans:bean>
 	<beans:bean id="RegisterInsertService" class="Services.RegisterInsertService"></beans:bean>
+	<beans:bean id="GetUserService" class="Services.GetUserService"></beans:bean>
 </beans:beans>

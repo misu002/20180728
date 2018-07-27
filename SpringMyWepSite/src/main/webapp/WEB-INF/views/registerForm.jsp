@@ -127,7 +127,7 @@
     </style>
 </head>
 <body>
-  <form action="register" onsubmit="return finalChk()" method="post">
+  <form action="register" onsubmit="return finalChk()" method="post" enctype="multipart/form-data">
         <div id="page">
             <h1 id="banner">NAVER</h1>
             <div id="content">
