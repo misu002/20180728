@@ -20,11 +20,12 @@ public class GetUserService {
 	jdbcTemplateUserinfoDao userinfodao;
 	
 	public List<userinfo> getUser() throws ServiceException {
-		Connection conn=null;
+
 		List<userinfo> userinfolist=null;
 		userinfolist=userinfodao.selectUser();
 		return userinfolist;
 /*		try {
+ 		Connection conn=null;
 		conn = ConnectionProvider.getConnection();	
 	
 		} catch (SQLException e) {

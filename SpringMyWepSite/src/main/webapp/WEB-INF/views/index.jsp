@@ -10,6 +10,7 @@
 css요청을 dispatcher에서 하려고 함 -> 무력화하기
 절대경로로 넣어줘야해서 c태그를 사용함??????????????????????????????????????????????
 <<link rel="stylesheet" href="<c:url value="/css.joinFrom.css"/>" /> --%>
+<c:url var="bgImg" value="/resources/imgs/bg3.jpg"/>
 <link href="https://fonts.googleapis.com/css?family=Markazi+Text|Nanum+Gothic" rel="stylesheet">
     <style>
         ul {
@@ -94,7 +95,7 @@ css요청을 dispatcher에서 하려고 함 -> 무력화하기
             color: wheat;
             font-weight: bold;
             text-align: left;
-            background-image: url(/resources/imgs/bg3.jpg);
+            background-image: url(${bgImg});
             background-size: 1500px;
             background-repeat: no-repeat;
         }
