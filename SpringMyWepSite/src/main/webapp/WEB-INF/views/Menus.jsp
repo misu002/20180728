@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,22 +29,26 @@
 </head>
 <body>
     <div id="links">
-    <%if(session.getAttribute("id")==null){ %>
-    <a href="login">로그인</a>
-    <a href="GoRegister">회원가입</a>
+    <c:choose>
+    <c:when test="${id eq null}">
+    <a href="<c:url value='/member/login/login'/>">로그인</a>
+    <a href= "<c:url value='/GoRegister'/>" >회원가입</a>
     <a href="/mywebsite/MList.jsp">방명록</a>
-    <%}else if(session.getAttribute("id").equals("misu002")){ %>
-    <a href="Logout">로그아웃</a>
-    <a href="Mypage">마이페이지</a>
+    </c:when>
+	<c:when test="${id eq 'misu002'}">
+    <a href="<c:url value='/member/login/Logout' />">로그아웃</a>
+    <a href="<c:url value='/member/Mypage' />" >마이페이지</a>
     <a href="/mywebsite/MList.jsp">방명록</a>
-    <a href="/mywebsite/userinfolist.jsp">회원리스트</a>
-    <a href="/mywebsite/empList.jsp">사원리스트</a>
-    <a href="/mywebsite/empInsertForm.jsp">사원등록</a>
-    <%}else{ %>
-       	<a href="Logout">로그아웃</a>
-   		<a href="/mywebsite/mypage.jsp">마이페이지</a>
+    <a href="<c:url value='/userinfolist'/>">회원리스트</a>
+    <a href="<c:url value='/empList'/>">사원리스트</a>
+    <a href="<c:url value='/empInsertForm'/>">사원등록</a>
+    </c:when>
+    <c:otherwise>
+    	<a href="<c:url value='/member/login/Logout' />">로그아웃</a>
+    	<a href="<c:url value='/member/Mypage' />" >마이페이지</a>
    		<a href="/mywebsite/MList.jsp">방명록</a>
-   		<%} %>
+   	</c:otherwise>
+   	</c:choose>
         </div>
 </body>
 </html>

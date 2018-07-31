@@ -1,3 +1,4 @@
+<%@page import="BeanModel.userinfo"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
@@ -5,7 +6,8 @@
 <%@page import="java.sql.DriverManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-      <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,27 +17,16 @@
 </style>
 </head>
 <body>
-<%
-	Connection conn = null;
-	Statement stmt = null;
-	ResultSet rs=null;
-	
-	try{
-	String jdbcDriver="jdbc:apache:commons:dbcp:pool1";
-	conn=DriverManager.getConnection(jdbcDriver);
-	String sql="select id,pw,name,birth,gender,phone,nvl(email,'없음'),imgname from userinfo where id='"+session.getAttribute("id")+"'";
-	stmt=conn.createStatement();
-	rs=stmt.executeQuery(sql);
 
-%>	
+
 <%@ include file="Menus.jsp" %>
-<h2><%=session.getAttribute("id") %>님의 회원정보</h2>
-		<%
-			if(rs.next()){			
-		%>
-<img src="/file/imgs/<%=rs.getString(8) %> alt='/file/imgs/aaaaa.png'" style="width: 400px"/>
+<h2>${userinfo.id}님의 회원정보</h2>
+<img src="<c:url value='/resources/uploadFile/memberPhoto/${userinfo.imgname}' />" style="width: 400px"/>
+
 <table border="1">
 		<tr>
+		
+		
 			<td>Id</td>
 			<td>PW</td>
 			<td>Name</td>
@@ -44,35 +35,21 @@
 			<td>Phone Number</td>
 			<td>Email</td>
 		</tr>
-
 		<tr>
-			<td><%=rs.getString(1) %></td>
-			<td><%=rs.getString(2) %></td>
-			<td><%=rs.getString(3) %></td>
-			<td><%=rs.getDate(4) %></td>
-			<td><%=rs.getString(5) %></td>
-			<td><%=rs.getString(6) %></td>
-			<td><%=rs.getString(7) %></td>
+			<td>${userinfo.id}</td>
+			<td>${userinfo.pw}</td>
+			<td>${userinfo.name}</td>
+			<td>${userinfo.year}-${userinfo.month}-${userinfo.day}</td>
+			<td>${userinfo.gender}</td>
+			<td>${userinfo.phone}</td>
+			<td>${userinfo.email}</td>
 			<td> <a href="">수정
 			</a><a href=""> 삭제</a>  </td>
 		</tr>		
 		
-		
-		<%}
-			} catch (SQLException ex) {
-				out.println(ex.getMessage());
-				ex.printStackTrace();
-			} finally {
-				if (rs != null)	try {rs.close();} catch (SQLException ex) {	}
-				if (stmt != null)try {	stmt.close();} catch (SQLException ex) {}
-				if (conn != null)try {	conn.close();} catch (SQLException ex) {}
-			}
-
-		%>
-		
 		</table>
 	
-<a href="/index.jsp">홈으로 돌아가기</a>
+<a href="<c:url value='/'/>">홈으로 돌아가기</a>
 </body>
 
 </html>

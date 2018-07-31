@@ -1,6 +1,7 @@
 package com.bitcamp.mywebsite;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import BeanModel.userinfo;
 import Services.GetUserService;
 import Services.ServiceException;
 
@@ -17,12 +20,20 @@ public class MypageController {
 	GetUserService getUserService;
 	
 	
-	@RequestMapping("Mypage")
+	@RequestMapping("/member/Mypage")
 	public String getMypage(HttpSession session,Model model) throws ServiceException {
-		ResultSet rs=null;
+		userinfo Info=null;
 		String id=(String) session.getAttribute("id");
-		rs=getUserService.getLoginUser(id);
-		model.addAttribute("rs",rs);
+		Info=getUserService.getLoginUser(id);
+		model.addAttribute("userinfo",Info);
+		System.out.println(Info);
 		return "mypage";
+	}
+	
+	@RequestMapping("/userinfolist")
+	public String getUserList(Model model) throws ServiceException {
+		List<userinfo> userlist = getUserService.getUser();
+		model.addAttribute("userlist", userlist);
+		return "userinfolist";
 	}
 }

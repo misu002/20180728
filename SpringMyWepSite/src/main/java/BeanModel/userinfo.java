@@ -2,6 +2,8 @@ package BeanModel;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class userinfo {
 	private String id;
 	private String pw;
@@ -12,13 +14,17 @@ public class userinfo {
 	private String gender;
 	private String phone;
 	private String email;
+	//DB데이터 입력을 위한 변수
 	private String imgname;
+	//파일 업로드 처리를 위한 변수
+	private MultipartFile photoFile;
+
 	private List<userinfo> userinfoList;
 	
 	public userinfo() {}
-
+	
 	public userinfo(String id, String pw, String name, String year, String month, String day, String gender,
-			String phone, String email, String imgname, List<userinfo> userinfoList) {
+			String phone, String email, String imgname, MultipartFile photoFile, List<userinfo> userinfoList) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -30,7 +36,16 @@ public class userinfo {
 		this.phone = phone;
 		this.email = email;
 		this.imgname = imgname;
+		this.photoFile = photoFile;
 		this.userinfoList = userinfoList;
+	}
+
+	public MultipartFile getPhotoFile() {
+		return photoFile;
+	}
+
+	public void setPhotoFile(MultipartFile photoFile) {
+		this.photoFile = photoFile;
 	}
 
 	public String getImgname() {
@@ -140,13 +155,11 @@ public class userinfo {
 		this.userinfoList = userinfoList;
 	}
 
-
 	@Override
 	public String toString() {
 		return "userinfo [id=" + id + ", pw=" + pw + ", name=" + name + ", year=" + year + ", month=" + month + ", day="
-				+ day + ", gender=" + gender + ", phone=" + phone + ", email=" + email + "]";
-	}
-	
+				+ day + ", gender=" + gender + ", phone=" + phone + ", email=" + email + ", imgname=" + imgname + "]";
+	}	
 	
 	
 }

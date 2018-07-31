@@ -16,11 +16,12 @@ import jdbc.JdbcUtil;
 import BeanModel.userinfo;
 
 public class userinfoDao {
+	
 	public int insert(Connection conn, userinfo userinfo) throws SQLException {
 		PreparedStatement pstmt = null;
 		String sql="insert into userinfo values(?,?,?,?,?,?,?,?)";
 		String birth=userinfo.getYear()+"-"+userinfo.getMonth()+"-"+userinfo.getDay();
-		String phone="0"+userinfo.getPhone();
+		//String phone="0"+userinfo.getPhone();
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1,userinfo.getId());
@@ -28,7 +29,7 @@ public class userinfoDao {
 			pstmt.setString(3,userinfo.getName());
 			pstmt.setString(4,birth);
 			pstmt.setString(5, userinfo.getGender());
-			pstmt.setString(6,phone);
+			pstmt.setString(6,userinfo.getPhone());
 			pstmt.setString(7,userinfo.getEmail());
 			pstmt.setString(8, userinfo.getImgname());
 			

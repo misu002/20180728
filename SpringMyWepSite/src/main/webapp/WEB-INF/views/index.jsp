@@ -1,5 +1,3 @@
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -96,7 +94,7 @@ css요청을 dispatcher에서 하려고 함 -> 무력화하기
             color: wheat;
             font-weight: bold;
             text-align: left;
-            background-image: url(resources/imgs/bg3.jpg);
+            background-image: url(/resources/imgs/bg3.jpg);
             background-size: 1500px;
             background-repeat: no-repeat;
         }
@@ -109,6 +107,7 @@ css요청을 dispatcher에서 하려고 함 -> 무력화하기
         #nav {
             overflow: hidden;
             border: 1px solid lightgray;
+            
         }
 
         .nav {
@@ -156,14 +155,16 @@ css요청을 dispatcher에서 하려고 함 -> 무력화하기
             <div id="leftone" class="leftone">
                 <h1>Finger Food Example Preview</h1>
                 <h3>2018년 06월 28일</h3>
-                <img src="resources/imgs/bg2%20(2).jpg" />
+                
+                <img src="<c:url value='/resources/imgs/bg2%20(2).jpg'/>"/>
                 <p>The Catering was founded in blabla by Mr. Smith in lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute iruredolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.We only use seasonal ingredients. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
 
             <div id="leftone2" class="leftone">
                 <h1>Korean Food Example Preview</h1>
                 <h3>2018년 06월 31일</h3>
-                <img src="resources/imgs/bg4.jpg" />
+             
+                <img src="<c:url value='/resources/imgs/bg4.jpg'/>" />
                 <p>The Catering was founded in blabla by Mr. Smith in lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute iruredolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.We only use seasonal ingredients. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
             <div id="rightone">

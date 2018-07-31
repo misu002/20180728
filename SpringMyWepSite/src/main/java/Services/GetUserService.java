@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import DAO.jdbcTemplateUserinfoDao;
 import DAO.userinfoDao;
 
 import jdbc.JdbcUtil;
@@ -15,35 +16,42 @@ import BeanModel.userinfo;
 
 public class GetUserService {
 	@Autowired
-	userinfoDao userinfodao;
+	//userinfoDao userinfodao;
+	jdbcTemplateUserinfoDao userinfodao;
 	
 	public List<userinfo> getUser() throws ServiceException {
 		Connection conn=null;
 		List<userinfo> userinfolist=null;
-		try {
-		conn = ConnectionProvider.getConnection();
-		userinfolist=userinfodao.selectUser(conn);
+		userinfolist=userinfodao.selectUser();
 		return userinfolist;
+/*		try {
+		conn = ConnectionProvider.getConnection();	
+	
 		} catch (SQLException e) {
 			throw new ServiceException("메시지 목록 구하기 실패: " + e.getMessage(), e);
 		} finally {
 			JdbcUtil.close(conn);
-		}
+		}*/
 	}
 	
-	public ResultSet getLoginUser(String id) throws ServiceException {
+	public userinfo getLoginUser(String id) throws ServiceException {
+		userinfo Info=null;
+		Info=userinfodao.selectById(id);
+		return Info;		
+		
+		/*
 		Connection conn=null;
 		String userName="";
 		ResultSet rs=null;
 		try {
 		conn = ConnectionProvider.getConnection();
-		rs=userinfodao.selectLoginUser(conn,id);		
+				
 		return rs;
 		} catch (SQLException e) {
 			throw new ServiceException("메시지 목록 구하기 실패: " + e.getMessage(), e);
 		} finally {
 			JdbcUtil.close(conn);
-		}
+		}*/
 	}
 	
 }

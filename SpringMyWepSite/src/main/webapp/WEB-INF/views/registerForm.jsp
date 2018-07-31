@@ -127,7 +127,7 @@
     </style>
 </head>
 <body>
-  <form action="register" onsubmit="return finalChk()" method="post" enctype="multipart/form-data">
+  <form action="register" method="post" enctype="multipart/form-data">
         <div id="page">
             <h1 id="banner">NAVER</h1>
             <div id="content">
@@ -194,7 +194,7 @@
                 </span>
                 <input class="big last" type="text" placeholder="인증번호 입력하세요">
                 <div class="photo">사진 업로드</div>
-                <input type="file" name="photo" id="photo" class="photo"/>
+                <input type="file" name="photoFile" id="photo" class="photo"/>
                 <button class="certify final">가입하기</button>
 
             </div>
