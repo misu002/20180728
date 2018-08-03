@@ -43,16 +43,21 @@
 		<h1>등록된 회원정보가 없습니다</h1>
 		</c:when>
 		<c:otherwise>
-		<c:forEach var="i" items="${userlist}">
+		<c:forEach var="i" items="${userlist}" >
 		<tr>
-			<td>${userlist.id}</td>
-			<td>${userlist.pw}</td>
-			<td>${userlist.name}</td>
-			<td>${userlist.year} - ${userlist.month} - ${userlist.day }</td>
-			<td>${userlist.gender}</td>
-			<td>${userlist.phone}</td>
-			<td>${userlist.email}</td>
-			<td><img src="<c:url value='/resources/uploadFile/memberPhoto/${userinfo.imgname}' />" style="width: 50px"/></td>
+			<td>${i.id}</td>
+			<td>${i.pw}</td>
+			<td>${i.name}</td>
+			<td>${i.birth}</td>
+			<td>${i.gender}</td>
+			<td>${i.phone}</td>
+			<td>${i.email}</td>
+			<c:if test="${i.imgname eq null}">
+			<td><img src="<c:url value='/resources/imgs/aaaaa.png' />" style="width: 30px"/></td>
+			</c:if>
+			<c:if test="${i.imgname ne null}">
+			<td><img src="<c:url value='/resources/uploadFile/memberPhoto/${i.imgname}'/>" style="width: 50px"/></td>
+			</c:if>	
 			<td><a href="">수정 </a><a href=""> 삭제</a></td>
 		</tr>
 		</c:forEach>

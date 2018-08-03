@@ -32,6 +32,11 @@ public class RegisterController {
 		int resultCnt = 0;		
 		resultCnt=register.register(info,request);
 		model.addAttribute("resultCnt",resultCnt);
+		
+		//인증메일, 확인메일 여기서 보내기
+		
+		
+		
 		return "index";
 	}
 	

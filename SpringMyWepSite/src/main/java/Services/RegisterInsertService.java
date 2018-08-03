@@ -7,8 +7,12 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
+import DAO.MybatisUserDao;
+import DAO.UserDaoInterface;
 import DAO.jdbcTemplateUserinfoDao;
 import DAO.userinfoDao;
 import jdbc.JdbcUtil;
@@ -18,8 +22,13 @@ import BeanModel.userinfo;
 public class RegisterInsertService {
 	@Autowired
 	//userinfoDao UserinfoDao;
-	jdbcTemplateUserinfoDao UserinfoDao;
+	//jdbcTemplateUserinfoDao UserinfoDao;
+	//MybatisUserDao UserinfoDao;
+	private SqlSessionTemplate template;
 	
+	private UserDaoInterface UserinfoDao;
+	
+	@Transactional
 	public int register(userinfo userinfo,HttpServletRequest request)  throws ServiceException, IllegalStateException, IOException  {
 		Connection conn=null;		
 		//DB 저장용 파일이름,물리적저장 
@@ -38,8 +47,10 @@ public class RegisterInsertService {
 			userinfo.setImgname(imgName);			
 		}	
 		System.out.println(dir);
+		UserinfoDao=template.getMapper(UserDaoInterface.class);
 		int resultCnt=UserinfoDao.insertUser(userinfo);
 		return resultCnt;
+		
 		
 /*		try {
 			conn=ConnectionProvider.getConnection();

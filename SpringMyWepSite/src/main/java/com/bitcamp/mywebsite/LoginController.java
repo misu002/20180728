@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import BeanModel.MemberInfo;
-import Services.GetIdService;
+import Services.GetUserService;
 import Services.ServiceException;
 
 
@@ -21,7 +21,7 @@ import Services.ServiceException;
 
 public class LoginController {
 	@Autowired
-    GetIdService getIdService;
+    GetUserService getUserService;
 	
 	@RequestMapping("member/login/login")
 	public ModelAndView goLogin(@CookieValue(value="CookieId", defaultValue="0") String CookieId) {
@@ -35,7 +35,7 @@ public class LoginController {
 	public String LoginAction(MemberInfo info, HttpServletResponse response,HttpServletRequest request) throws ServiceException {
         String id=info.getId();
         String pw=info.getPassword();        
-        String DBpw=getIdService.findPw(id);
+        String DBpw=getUserService.getLoginUser(id).getPw();
         String isRem=request.getParameter("remember");
         HttpSession session = request.getSession(false);
 		if(pw.equals(DBpw)) {

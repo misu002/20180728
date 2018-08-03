@@ -33,20 +33,23 @@
     <c:when test="${id eq null}">
     <a href="<c:url value='/member/login/login'/>">로그인</a>
     <a href= "<c:url value='/GoRegister'/>" >회원가입</a>
-    <a href="/mywebsite/MList.jsp">방명록</a>
+    <a href="<c:url value='/MList'/>">방명록</a>
+    <a href="<c:url value='/UserSearch/xls'/>">회원검색</a>
     </c:when>
 	<c:when test="${id eq 'misu002'}">
     <a href="<c:url value='/member/login/Logout' />">로그아웃</a>
     <a href="<c:url value='/member/Mypage' />" >마이페이지</a>
-    <a href="/mywebsite/MList.jsp">방명록</a>
+    <a href="<c:url value='/MList'/>">방명록</a>
     <a href="<c:url value='/userinfolist'/>">회원리스트</a>
     <a href="<c:url value='/empList'/>">사원리스트</a>
     <a href="<c:url value='/empInsertForm'/>">사원등록</a>
+    <a href="<c:url value='/UserSearch/xls'/>">회원검색</a>
     </c:when>
     <c:otherwise>
     	<a href="<c:url value='/member/login/Logout' />">로그아웃</a>
     	<a href="<c:url value='/member/Mypage' />" >마이페이지</a>
-   		<a href="/mywebsite/MList.jsp">방명록</a>
+    	<a href="<c:url value='/MList'/>">방명록</a>
+    	<a href="<c:url value='/UserSearch/xls'/>">회원검색</a>
    	</c:otherwise>
    	</c:choose>
         </div>

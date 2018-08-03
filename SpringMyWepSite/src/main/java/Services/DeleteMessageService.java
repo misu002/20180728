@@ -3,32 +3,43 @@ package Services;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import DAO.MessageDao;
+import DAO.MessageDaoInterface;
 import BeanModel.Message;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 
 public class DeleteMessageService {
 	@Autowired
-	MessageDao messageDao;
+	//MessageDao messageDao;	
+	private SqlSessionTemplate template;
+	
+	private MessageDaoInterface messageDao;
 
 	public void deleteMessage(int messageId, String GuestName) throws ServiceException, InvalidMessagePassowrdException,
 			MessageNotFoundException{
-		Connection conn = null;
+		messageDao=template.getMapper(MessageDaoInterface.class);
+		Message message = messageDao.selectbyId(messageId);
+		String guestName=message.getGuestName();
+		
+		if (guestName == null) {
+			
+		}else if(guestName.equals(GuestName)) {
+			messageDao.delete(messageId);
+		}
+		
+		/*Connection conn = null;
+		
 		
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
 			//1.메세지검색
-			String guestName = messageDao.select(conn, messageId);
-			
-			//왜
-			if (guestName == null) {throw new MessageNotFoundException("해당 메세지를 작성하지 않으셨습니다.");}
-			else if(guestName.equals(GuestName)) {
-				messageDao.delete(conn, messageId);
+
 				conn.commit();
 			}else {
 				throw new InvalidMessagePassowrdException();
@@ -61,7 +72,7 @@ public class DeleteMessageService {
 				}catch (SQLException e) { }
 					JdbcUtil.close(conn);
 			}
-			}
+			}*/
 			
 		
 	}

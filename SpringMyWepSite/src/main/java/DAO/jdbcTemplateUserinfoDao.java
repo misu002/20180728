@@ -36,7 +36,7 @@ public class jdbcTemplateUserinfoDao {
 	
 	
 	public List<userinfo> selectUser(){
-		List<userinfo> userlist=null;
+		List<userinfo> userlist;
 		String sql="select id,pw,name,birth,gender,phone,nvl(email,'없음'),imgname from userinfo";
 		//userlist 는 userinfo만들어진 배열들임 for,문으로 돌려야하나
 		userlist=template.query(sql, new UserinfoRowMapper());

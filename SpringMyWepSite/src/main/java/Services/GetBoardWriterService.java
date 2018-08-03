@@ -5,24 +5,31 @@ import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import BeanModel.userinfo;
+import DAO.MybatisUserDao;
 import DAO.userinfoDao;
 import Services.ServiceException;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 
-public class GetIdService {
+public class GetBoardWriterService {
 	@Autowired
-	userinfoDao UserinfoDao;
+	//userinfoDao UserinfoDao;
+	MybatisUserDao Userinfodao;
 	
-	public String findPw(String id) throws ServiceException{
-		Connection conn=null;
+	public userinfo getBoardWriter(String id) throws ServiceException{
+		userinfo info= null;
+		info=Userinfodao.selectById(id);
+		return info;
+		
+		
+/*		Connection conn=null;
 		String pw="";
 		try {
 			conn=ConnectionProvider.getConnection();
 
-			if(UserinfoDao!=null) {
-				pw=UserinfoDao.selectPw(conn,id);
-				return pw;
+			if(Userinfodao!=null) {
+
 			}else {
 				return "Not working";
 			}			
@@ -31,7 +38,7 @@ public class GetIdService {
 			throw new ServiceException("메시지 등록 실패: " + e.getMessage(), e);
 		}finally {
 			JdbcUtil.close(conn);
-		}
+		}*/
 
 	}
 }

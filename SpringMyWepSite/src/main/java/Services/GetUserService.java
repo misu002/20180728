@@ -5,8 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import DAO.MybatisUserDao;
+import DAO.UserDaoInterface;
 import DAO.jdbcTemplateUserinfoDao;
 import DAO.userinfoDao;
 
@@ -17,11 +20,16 @@ import BeanModel.userinfo;
 public class GetUserService {
 	@Autowired
 	//userinfoDao userinfodao;
-	jdbcTemplateUserinfoDao userinfodao;
+	//jdbcTemplateUserinfoDao userinfodao;
+	//MybatisUserDao userinfodao;
+	private SqlSessionTemplate template;
+
+	private UserDaoInterface userinfodao;
 	
 	public List<userinfo> getUser() throws ServiceException {
 
 		List<userinfo> userinfolist=null;
+		userinfodao=template.getMapper(UserDaoInterface.class);
 		userinfolist=userinfodao.selectUser();
 		return userinfolist;
 /*		try {
@@ -37,6 +45,7 @@ public class GetUserService {
 	
 	public userinfo getLoginUser(String id) throws ServiceException {
 		userinfo Info=null;
+		userinfodao=template.getMapper(UserDaoInterface.class);
 		Info=userinfodao.selectById(id);
 		return Info;		
 		

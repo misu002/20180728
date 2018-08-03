@@ -20,9 +20,15 @@
 
 
 <%@ include file="Menus.jsp" %>
-<h2>${userinfo.id}님의 회원정보</h2>
-<img src="<c:url value='/resources/uploadFile/memberPhoto/${userinfo.imgname}' />" style="width: 400px"/>
 
+<h2>${userinfo.id}님의 회원정보</h2>
+
+			<c:if test="${userinfo.imgname eq null}">
+			<img src="<c:url value='/resources/imgs/aaaaa.png' />" style="width: 300px"/>
+			</c:if>
+			<c:if test="${userinfo.imgname ne null}">
+			<img src="<c:url value='/resources/uploadFile/memberPhoto/${userinfo.imgname}'/>" style="width: 400px"/>
+			</c:if>	
 <table border="1">
 		<tr>
 		
@@ -39,7 +45,7 @@
 			<td>${userinfo.id}</td>
 			<td>${userinfo.pw}</td>
 			<td>${userinfo.name}</td>
-			<td>${userinfo.year}-${userinfo.month}-${userinfo.day}</td>
+			<td>${userinfo.birth}</td>
 			<td>${userinfo.gender}</td>
 			<td>${userinfo.phone}</td>
 			<td>${userinfo.email}</td>

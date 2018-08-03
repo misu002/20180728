@@ -1,5 +1,6 @@
 package BeanModel;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -11,6 +12,8 @@ public class userinfo {
 	private String year;
 	private String month;
 	private String day;
+	private Date birth;
+	private Date birth2;
 	private String gender;
 	private String phone;
 	private String email;
@@ -21,10 +24,11 @@ public class userinfo {
 
 	private List<userinfo> userinfoList;
 	
-	public userinfo() {}
+	public userinfo() {}	
 	
-	public userinfo(String id, String pw, String name, String year, String month, String day, String gender,
-			String phone, String email, String imgname, MultipartFile photoFile, List<userinfo> userinfoList) {
+	public userinfo(String id, String pw, String name, String year, String month, String day, Date birth,
+			String gender, String phone, String email, String imgname, MultipartFile photoFile,
+			List<userinfo> userinfoList) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -32,12 +36,26 @@ public class userinfo {
 		this.year = year;
 		this.month = month;
 		this.day = day;
+		this.birth = birth;
 		this.gender = gender;
 		this.phone = phone;
 		this.email = email;
 		this.imgname = imgname;
 		this.photoFile = photoFile;
 		this.userinfoList = userinfoList;
+	}
+	@SuppressWarnings("deprecation")
+	public Date getBirth2() {
+		String b=year+"-"+month+"-"+day;
+		return new Date(new java.util.Date(b).getTime());
+	}
+	public Date getBirth() {
+		
+		return birth;
+	}
+
+	public void setBirth(Date birth) {
+		this.birth = birth;
 	}
 
 	public MultipartFile getPhotoFile() {
@@ -158,8 +176,11 @@ public class userinfo {
 	@Override
 	public String toString() {
 		return "userinfo [id=" + id + ", pw=" + pw + ", name=" + name + ", year=" + year + ", month=" + month + ", day="
-				+ day + ", gender=" + gender + ", phone=" + phone + ", email=" + email + ", imgname=" + imgname + "]";
-	}	
+				+ day + ", birth=" + birth + ", gender=" + gender + ", phone=" + phone + ", email=" + email
+				+ ", imgname=" + imgname + ", photoFile=" + photoFile + ", userinfoList=" + userinfoList + "]";
+	}
+
+
 	
 	
 }

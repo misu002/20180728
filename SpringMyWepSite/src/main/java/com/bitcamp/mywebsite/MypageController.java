@@ -1,6 +1,6 @@
 package com.bitcamp.mywebsite;
 
-import java.sql.ResultSet;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -26,7 +26,6 @@ public class MypageController {
 		String id=(String) session.getAttribute("id");
 		Info=getUserService.getLoginUser(id);
 		model.addAttribute("userinfo",Info);
-		System.out.println(Info);
 		return "mypage";
 	}
 	

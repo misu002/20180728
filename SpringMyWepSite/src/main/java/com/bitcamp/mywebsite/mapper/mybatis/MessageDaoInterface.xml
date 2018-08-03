@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DAO.MessageDaoInterface">
+	<insert id="insert" parameterType="BeanModel.Message">
+	insert into guestbook_message(MESSAGE_ID,GUEST_NAME,password,message) values(message_id_seq.NEXTVAL,#{guestName},#{password},#{message})
+	</insert>
+	<select id="selectCount" resultType="int">
+	select count(*) from guestbook_message
+	</select>
+	<delete id="delete" parameterType="BeanModel.Message">
+	delete from guestbook_message where message_id = #{id}
+	</delete>
+	<select id="selectbyId" resultType="BeanModel.Message">
+	select MESSAGE_ID,GUEST_NAME,password,message from guestbook_message where message_id = #{id}
+	</select>
+	<select id="selectList" resultType="BeanModel.Message">
+	<![CDATA[
+	select message_id, guest_name, password, 
+	message from (select rownum rnum, message_id, guest_name, password, message from 
+	(select * from guestbook_message m order by m.message_id desc) 
+	where rownum <= #{endRow}) where rnum >= #{firstRow} 
+	 ]]> 
+	</select>
+	
+</mapper>
