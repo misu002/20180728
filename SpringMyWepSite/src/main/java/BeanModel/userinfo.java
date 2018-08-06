@@ -12,8 +12,8 @@ public class userinfo {
 	private String year;
 	private String month;
 	private String day;
-	private Date birth;
-	private Date birth2;
+	private String birth;
+	private String birth2;
 	private String gender;
 	private String phone;
 	private String email;
@@ -26,7 +26,7 @@ public class userinfo {
 	
 	public userinfo() {}	
 	
-	public userinfo(String id, String pw, String name, String year, String month, String day, Date birth,
+	public userinfo(String id, String pw, String name, String year, String month, String day, String birth,
 			String gender, String phone, String email, String imgname, MultipartFile photoFile,
 			List<userinfo> userinfoList) {
 		super();
@@ -45,16 +45,16 @@ public class userinfo {
 		this.userinfoList = userinfoList;
 	}
 	@SuppressWarnings("deprecation")
-	public Date getBirth2() {
+	public String getBirth2() {
 		String b=year+"-"+month+"-"+day;
-		return new Date(new java.util.Date(b).getTime());
+		return b;
 	}
-	public Date getBirth() {
+	public String getBirth() {
 		
 		return birth;
 	}
 
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 

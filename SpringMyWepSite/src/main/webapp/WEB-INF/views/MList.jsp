@@ -49,18 +49,21 @@
 	<table>
 	<c:forEach var="message" items="${viewData}">
 		<tr>
-			<td>메시지 번호: ${message.id } <br /> 
+			<td>메시지 번호: ${message.id} <br /> 
 			손님 이름: ${message.guestName }<br /> 
 			메시지: ${message.message} <br /> 
-			<a href="deleteMessage.jsp?messageId=${message.id }&name=${message.guestName }">[삭제하기]</a>
+			<a href=<c:url value='/deleteMessage'>
+			<c:param name='messageId' value='${message.id}'></c:param>
+			</c:url>
+			>[삭제하기]</a>
 			</td>
 		</tr>	
 	</c:forEach>
 	</table></div>
 	<br>
-	<c:forEach var="i" items="${viewData.pageTotalCount }">
-
-	<a href="MList.jsp?page=${i}">[${i}]</a>	
+	<c:forEach var="i" items="${viewData.pageTotalCount}">
+	<a href=<c:url value='/MList'>
+	<c:param name='page' value='${i}'></c:param></c:url>>[${i}]</a>	
 	</c:forEach>
 	</c:otherwise>
 	</c:choose>

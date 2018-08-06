@@ -4,18 +4,18 @@
 <mapper namespace="DAO.UserDaoInterface">
 
 <select id="selectById" resultType="BeanModel.userinfo">
-	select id,pw,name,to_char(birth,'YYYY-MM-DD') as birth,gender,phone,nvl(email,'없음') as email,imgname 
-	from userinfo where id=#{id}
+	select id,pw,name,DATE_FORMAT(now(), '%Y-%m-%d') as birth,gender,phone,COALESCE(email,'없음') as email,imgname 
+	from openproject.userinfo where id=#{id}
 </select> 
 <insert id="insertUser" parameterType="BeanModel.userinfo">
-	insert into userinfo (id, pw, name, birth, gender, phone, email, imgname) values (#{id}, #{pw}, #{name}, #{birth2}, #{gender}	,#{phone}, #{email, jdbcType=VARCHAR}, #{imgname, jdbcType=VARCHAR})     
+	insert into userinfo (id, pw, name, birth, gender, phone, email, imgname) values (#{id}, #{pw}, #{name}, #{birth2}, #{gender}	,#{phone}, #{email}, #{imgname})     
 </insert>
 <select id="selectUser" resultType="BeanModel.userinfo">
-select id,pw,name,to_char(birth,'YYYY-MM-DD') as birth,gender,phone,nvl(email,'없음') as email,imgname from userinfo
+select id,pw,name,DATE_FORMAT(now(), '%Y-%m-%d') as birth,gender,phone,COALESCE(email,'없음') as email,imgname from openproject.userinfo
 </select> 
 
 <select id="selectUserByBirth" resultType="BeanModel.userinfo" parameterType="Date">
- select id,pw,name,to_char(birth,'YYYY-MM-DD') as birth,gender,phone,nvl(email,'없음') as email,imgname from userinfo
+ select id,pw,name,DATE_FORMAT(now(), '%Y-%m-%d') as birth,gender,phone,COALESCE(email,'없음') as email,imgname from openproject.userinfo
  where birth between #{first} and #{second} order by 4
 </select> 
 

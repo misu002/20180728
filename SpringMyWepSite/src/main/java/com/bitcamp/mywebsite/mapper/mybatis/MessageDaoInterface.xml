@@ -15,12 +15,13 @@
 	select MESSAGE_ID,GUEST_NAME,password,message from guestbook_message where message_id = #{id}
 	</select>
 	<select id="selectList" resultType="BeanModel.Message">
-	<![CDATA[
+	select message_id,guest_name,password,message from guestbook_message limit 3
+<!-- 	<![CDATA[
 	select message_id, guest_name, password, 
 	message from (select rownum rnum, message_id, guest_name, password, message from 
 	(select * from guestbook_message m order by m.message_id desc) 
 	where rownum <= #{endRow}) where rnum >= #{firstRow} 
-	 ]]> 
+	 ]]>  -->
 	</select>
 	
 </mapper>

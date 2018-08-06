@@ -15,7 +15,7 @@ public class MessageController {
 	@Autowired
 	GetMessageListService messageListService;
 	
-	@RequestMapping("/MList")
+	@RequestMapping("MList")
 	public String getMList(@RequestParam("id") String id,@RequestParam("page") String pageNumberStr
 			,Model model) throws ServiceException {
     	int pageNumber=1;
@@ -27,7 +27,7 @@ public class MessageController {
     	model.addAttribute("viewData", viewData);
 		return "MList";
 	}
-	@RequestMapping("/MWrite")
+	@RequestMapping("MWrite")
 	public String getMWrite() {
 		return "MWrite";
 	}
