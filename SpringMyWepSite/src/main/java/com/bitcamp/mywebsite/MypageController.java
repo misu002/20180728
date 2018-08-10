@@ -25,7 +25,7 @@ public class MypageController {
 		userinfo Info=null;
 		String id=(String) session.getAttribute("id");
 		Info=getUserService.getLoginUser(id);
-		model.addAttribute("userinfo",Info);
+		model.addAttribute("Userinfo",Info);
 		return "mypage";
 	}
 	

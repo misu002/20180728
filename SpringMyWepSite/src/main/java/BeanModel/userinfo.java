@@ -23,12 +23,14 @@ public class userinfo {
 	private MultipartFile photoFile;
 
 	private List<userinfo> userinfoList;
-	
+	private String confirm;
+
+
 	public userinfo() {}	
 	
 	public userinfo(String id, String pw, String name, String year, String month, String day, String birth,
 			String gender, String phone, String email, String imgname, MultipartFile photoFile,
-			List<userinfo> userinfoList) {
+			List<userinfo> userinfoList,String confirm) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -43,6 +45,7 @@ public class userinfo {
 		this.imgname = imgname;
 		this.photoFile = photoFile;
 		this.userinfoList = userinfoList;
+		this.confirm=confirm;
 	}
 	@SuppressWarnings("deprecation")
 	public String getBirth2() {
@@ -171,16 +174,22 @@ public class userinfo {
 
 	public void setUserinfoList(List<userinfo> userinfoList) {
 		this.userinfoList = userinfoList;
+	}	
+	
+	public String getConfirm() {
+		return confirm;
+	}
+
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
 	}
 
 	@Override
 	public String toString() {
 		return "userinfo [id=" + id + ", pw=" + pw + ", name=" + name + ", year=" + year + ", month=" + month + ", day="
-				+ day + ", birth=" + birth + ", gender=" + gender + ", phone=" + phone + ", email=" + email
-				+ ", imgname=" + imgname + ", photoFile=" + photoFile + ", userinfoList=" + userinfoList + "]";
-	}
-
-
-	
+				+ day + ", birth=" + birth + ", birth2=" + birth2 + ", gender=" + gender + ", phone=" + phone
+				+ ", email=" + email + ", imgname=" + imgname + ", photoFile=" + photoFile + ", userinfoList="
+				+ userinfoList + ", confirm=" + confirm + "]";
+	}	
 	
 }

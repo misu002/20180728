@@ -47,13 +47,14 @@
 	<c:otherwise>
 	<div>
 	<table>
-	<c:forEach var="message" items="${viewData}">
+	<c:forEach var="message" items="${viewData.messageList}">
 		<tr>
-			<td>메시지 번호: ${message.id} <br /> 
-			손님 이름: ${message.guestName }<br /> 
+			<td>메시지 번호: ${message.message_id} <br /> 
+			손님 이름: ${message.guest_name }<br /> 
 			메시지: ${message.message} <br /> 
 			<a href=<c:url value='/deleteMessage'>
-			<c:param name='messageId' value='${message.id}'></c:param>
+			<c:param name='guest_name' value='${message.guest_name}'></c:param>
+			<c:param name='message_id' value='${message.message_id}'></c:param>
 			</c:url>
 			>[삭제하기]</a>
 			</td>
@@ -61,11 +62,13 @@
 	</c:forEach>
 	</table></div>
 	<br>
-	<c:forEach var="i" items="${viewData.pageTotalCount}">
+	<c:forEach var="i" begin="1" end="${viewData.pageTotalCount}">
 	<a href=<c:url value='/MList'>
 	<c:param name='page' value='${i}'></c:param></c:url>>[${i}]</a>	
 	</c:forEach>
 	</c:otherwise>
 	</c:choose>
+	<br>
+	<a href="<c:url value='/'/>">[홈으로 돌아가기]</a>
 </body>
 </html>

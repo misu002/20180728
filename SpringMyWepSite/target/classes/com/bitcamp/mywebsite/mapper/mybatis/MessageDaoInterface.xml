@@ -2,20 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="DAO.MessageDaoInterface">
-	<insert id="insert" parameterType="BeanModel.Message">
-	insert into guestbook_message(MESSAGE_ID,GUEST_NAME,password,message) values(message_id_seq.NEXTVAL,#{guestName},#{password},#{message})
+	<insert id="insert" parameterType="BeanModel.Message">	
+	insert into openproject.guestbook_message(guest_name,password,message) values(#{guest_name},#{password},#{message})
 	</insert>
 	<select id="selectCount" resultType="int">
-	select count(*) from guestbook_message
+	select count(*) from openproject.guestbook_message
 	</select>
 	<delete id="delete" parameterType="BeanModel.Message">
-	delete from guestbook_message where message_id = #{id}
+	delete from openproject.guestbook_message where message_id = #{message_id}
 	</delete>
 	<select id="selectbyId" resultType="BeanModel.Message">
-	select MESSAGE_ID,GUEST_NAME,password,message from guestbook_message where message_id = #{id}
+	select MESSAGE_ID,GUEST_NAME,password,message from openproject.guestbook_message where message_id = #{message_id}
 	</select>
 	<select id="selectList" resultType="BeanModel.Message">
-	select message_id,guest_name,password,message from guestbook_message limit 3
+	select * from openproject.guestbook_message order by message_id desc limit #{firstRow}, #{endRow}
 <!-- 	<![CDATA[
 	select message_id, guest_name, password, 
 	message from (select rownum rnum, message_id, guest_name, password, message from 

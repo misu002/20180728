@@ -38,7 +38,6 @@ public class RegisterInsertService {
 		String uploadUri="/resources/uploadFile/memberPhoto";
 		//2.시스템의 물리적인 경로
 		String dir=request.getSession().getServletContext().getRealPath(uploadUri);
-		System.out.println(dir);
 		//사용자의 업로드 파일을 물리적으로 저장
 		if(!userinfo.getPhotoFile().isEmpty()) {
 			//imgName=System.currentTimeMillis()+userinfo.getPhotoFile().getOriginalFilename();

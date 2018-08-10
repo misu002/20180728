@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
 <style>
 body {
 	margin: 0;
@@ -70,7 +71,35 @@ a {
 	color: #bababa;
 }
 </style>
-
+    <script>
+    	$(document).ready(function(){
+    		$('input[name=id]').focusout(function(){
+    			if($(this).val()==""){
+    				 $('#remove1').remove();
+                     $('<span id="remove1"  style="color:red">필수입력 정보입니다.</span>').appendTo('.idLabel');
+    			}    			
+    		});
+    		
+    		$('input[name=password]').focusout(function(){
+    			if($(this).val()==""){
+    				 $('#remove2').remove();
+                     $('<span id="remove2"  style="color:red">필수입력 정보입니다.</span>').appendTo('.pwLabel');
+    			}    			
+    		});
+    	});
+    function chk(){
+    	if($('input[name=id]').val()==""){
+    		alert("입력되지 않은 정보가 있습니다.")
+    		return false;
+    	}else if($('input[name=password]').val()==""){
+    		alert("입력되지 않은 정보가 있습니다.")
+    		return false;
+    }
+    	
+    }
+    
+    
+    </script>
 </head>
 <body>  
 	<div id="page">
@@ -102,8 +131,8 @@ a {
 				</c:otherwise>
 				</c:choose>
 				<div class="links">
-					<a href="">아이디찾기</a> <a href="">비밀번호찾기</a> <a
-						href="/NaverAgree.jsp">회원가입</a>
+					<a href="">아이디찾기</a> <a href="<c:url value='/findPw'/>">비밀번호찾기</a> <a
+						href="<c:url value='/goAgreeForm'/>">회원가입</a>
 				</div>
 			</div>
 		</form>

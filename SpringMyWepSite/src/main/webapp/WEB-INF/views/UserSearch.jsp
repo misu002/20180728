@@ -27,8 +27,7 @@
 </head>
 <body>
 	<div>
-	<form method="post">
-	
+	<form method="post">	
 		<input type="date" value="회원 생일 검색" name="firstDate"/>	 - <input type="date" value="회원 생일 검색" name="secondDate"/>	
 		<input type="submit" value="검색" />
 	</form>

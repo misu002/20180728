@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import DAO.MessageDao;
 import DAO.MessageDaoInterface;
+import DAO.UserDaoInterface;
 import BeanModel.Message;
+import BeanModel.userinfo;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 
@@ -18,18 +20,25 @@ public class DeleteMessageService {
 	private SqlSessionTemplate template;
 	
 	private MessageDaoInterface messageDao;
+	private UserDaoInterface userDao;
 
-	public void deleteMessage(int messageId, String GuestName) throws ServiceException, InvalidMessagePassowrdException,
+	public int deleteMessage(String userId, String guest_name ,int message_id) throws ServiceException, InvalidMessagePassowrdException,
 			MessageNotFoundException{
 		messageDao=template.getMapper(MessageDaoInterface.class);
-		Message message = messageDao.selectbyId(messageId);
-		String guestName=message.getGuestName();
+		//메세지 작성자의 이름 : guest_name
+		userDao=template.getMapper(UserDaoInterface.class);
 		
-		if (guestName == null) {
-			
-		}else if(guestName.equals(GuestName)) {
-			messageDao.delete(messageId);
+		//현재 로그인한 회원의 이름 구하기
+		userinfo info=userDao.selectById(userId);
+		int resultCnt=0;
+		if (info.getName() == null) {
+			return resultCnt;
+		}else if(info.getName().equals(guest_name)) {
+			resultCnt=messageDao.delete(message_id);
+		}else {
+			return resultCnt;
 		}
+		return resultCnt;
 		
 		/*Connection conn = null;
 		

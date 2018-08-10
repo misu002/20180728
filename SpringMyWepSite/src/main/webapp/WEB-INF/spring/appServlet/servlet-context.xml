@@ -41,7 +41,7 @@
 		base-package="com.bitcamp.mywebsite" />
 
 
-	<!-- 데이터베이스 연동을 위한 dataSource 빈 등록 : jdbcTemplate에 주입 , mybatis 설정 -->
+	<!-- 데이터베이스 연동을 위한  오라클 dataSource 빈 등록 : jdbcTemplate에 주입 , mybatis 설정 -->
 <!-- 	<beans:bean id="dataSource"
 		class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<beans:property name="driverClass"
@@ -53,10 +53,11 @@
 		<beans:property name="password" value="1234" />
 	</beans:bean> -->
 	
+		<!-- 데이터베이스 연동을 위한 MYSQL dataSource 빈 등록 : jdbcTemplate에 주입 , mybatis 설정 -->
 		<beans:bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource" 
 		p:driverClassName="com.mysql.cj.jdbc.Driver"
-		p:url="jdbc:mysql://localhost/openproject?useSSL=false&amp;serverTimezone=UTC"
+		p:url="jdbc:mysql://localhost/openproject?useSSL=false&amp;chracterEncoding=utf-8&amp;serverTimezone=UTC"
 		p:username="root"
 		p:password="1234"/>
 
@@ -68,8 +69,8 @@
 		<beans:property name="dataSource" ref="dataSource" />
 	</beans:bean>
 
-	<beans:bean id="jdbcTemplateUserinfoDao"
-		class="DAO.jdbcTemplateUserinfoDao"></beans:bean>
+<!-- 	<beans:bean id="jdbcTemplateUserinfoDao"
+		class="DAO.jdbcTemplateUserinfoDao"></beans:bean> -->
 	<!-- MybatisUserDao 빈 등록 -->
 	<beans:bean id="MybatisUserDao" class="DAO.MybatisUserDao"></beans:bean>
 
@@ -95,12 +96,16 @@
 		class="Services.RegisterInsertService"></beans:bean>
 	<beans:bean id="GetUserService"
 		class="Services.GetUserService"></beans:bean>
+	<beans:bean id="MailSenderService" class="Services.MailSenderService"></beans:bean>
+		
 
 	<!-- 방명록 서비스 등록 -->
 	<beans:bean id="GetMessageListService"
 		class="Services.GetMessageListService"></beans:bean>
 	<beans:bean id="Services.DeleteMessageService"
 		class="Services.DeleteMessageService"></beans:bean>
+		<beans:bean id="WriteMessageService" 
+		class="Services.WriteMessageService"></beans:bean>
 
 
 	<!-- PlatformTransactionManager 빈 설정 -->
@@ -133,6 +138,9 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
+	
+	
+	
 
 </beans:beans>
 

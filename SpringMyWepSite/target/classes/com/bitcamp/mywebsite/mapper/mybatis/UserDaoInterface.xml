@@ -4,19 +4,36 @@
 <mapper namespace="DAO.UserDaoInterface">
 
 <select id="selectById" resultType="BeanModel.userinfo">
-	select id,pw,name,DATE_FORMAT(now(), '%Y-%m-%d') as birth,gender,phone,COALESCE(email,'없음') as email,imgname 
+	select id,pw,name,DATE_FORMAT(now(), '%Y-%m-%d') as birth,gender,phone,COALESCE(email,'없음') as email,imgname ,confirm 
 	from openproject.userinfo where id=#{id}
 </select> 
 <insert id="insertUser" parameterType="BeanModel.userinfo">
 	insert into userinfo (id, pw, name, birth, gender, phone, email, imgname) values (#{id}, #{pw}, #{name}, #{birth2}, #{gender}	,#{phone}, #{email}, #{imgname})     
 </insert>
 <select id="selectUser" resultType="BeanModel.userinfo">
-select id,pw,name,DATE_FORMAT(now(), '%Y-%m-%d') as birth,gender,phone,COALESCE(email,'없음') as email,imgname from openproject.userinfo
+select id,pw,name,DATE_FORMAT(now(), '%Y-%m-%d') as birth,gender,phone,COALESCE(email,'없음') as email,imgname,confirm from openproject.userinfo
 </select> 
 
 <select id="selectUserByBirth" resultType="BeanModel.userinfo" parameterType="Date">
- select id,pw,name,DATE_FORMAT(now(), '%Y-%m-%d') as birth,gender,phone,COALESCE(email,'없음') as email,imgname from openproject.userinfo
+ select id,pw,name,DATE_FORMAT(now(), '%Y-%m-%d') as birth,gender,phone,COALESCE(email,'없음') as email,imgname,confirm from openproject.userinfo
  where birth between #{first} and #{second} order by 4
 </select> 
+
+<select id="selectUserByBirthXml" resultType="VariousView.XmlUserinfo" parameterType="Date">
+ select id,pw,name,DATE_FORMAT(now(), '%Y-%m-%d') as birth,gender,phone,COALESCE(email,'없음') as email,imgname,confirm from openproject.userinfo
+ where birth between #{first} and #{second} order by 4
+</select> 
+
+<update id="updateById">
+	update openproject.userinfo set confirm='Y' where id=#{id}
+</update>
+
+<update id="updateTmpPw">
+	update openproject.userinfo set pw=#{tmpPw} where id=#{userId}
+</update>
+
+<update id="updateChangePw">
+		update openproject.userinfo set pw=#{changePw} where id=#{userId}
+</update>
 
 </mapper>

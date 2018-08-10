@@ -29,7 +29,7 @@ public class MessageDao {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, message.getGuestName());
+			pstmt.setString(1, message.getGuest_name());
 			pstmt.setString(2, message.getPassword());
 			pstmt.setString(3, message.getMessage());
 			return pstmt.executeUpdate();
@@ -85,8 +85,8 @@ public class MessageDao {
 
 	private Message makeMessageFromResultSet(ResultSet rs) throws SQLException {
 		Message message = new Message();
-		message.setId(rs.getInt("message_id"));
-		message.setGuestName(rs.getString("guest_name"));
+		message.setMessage_id(rs.getInt("message_id"));
+		message.setGuest_name(rs.getString("guest_name"));
 		message.setPassword(rs.getString("password"));
 		message.setMessage(rs.getString("message"));
 		return message;

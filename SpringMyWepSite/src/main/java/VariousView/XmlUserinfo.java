@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name="", propOrder= {"id","pw","name","birth","gender","phone","email","imgname"})
+@XmlType(name="", propOrder= {"id","pw","name","birth","gender","phone","email","imgname","confirm"})
 public class XmlUserinfo {
 	private String id;
 	private String pw;
@@ -15,12 +15,13 @@ public class XmlUserinfo {
 	private String phone;
 	private String email;
 	private String imgname;
+	private String confirm;
 	
-	
+
 	public XmlUserinfo() {}
 	
 	public XmlUserinfo(String id, String pw, String name, String birth, String gender, String phone, String email,
-			String imgname) {
+			String imgname, String confirm) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -30,7 +31,9 @@ public class XmlUserinfo {
 		this.phone = phone;
 		this.email = email;
 		this.imgname = imgname;
+		this.confirm = confirm;
 	}
+
 	public String getId() {
 		return id;
 	}
@@ -78,6 +81,14 @@ public class XmlUserinfo {
 	}
 	public void setImgname(String imgname) {
 		this.imgname = imgname;
+	}
+	
+	public String getConfirm() {
+		return confirm;
+	}
+
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
 	}
 	
 }
