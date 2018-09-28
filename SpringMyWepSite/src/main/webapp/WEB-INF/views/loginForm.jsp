@@ -103,7 +103,7 @@ a {
 </head>
 <body>  
 	<div id="page">
-		<h1 id="banner">NAVER</h1>
+		<h1 id="banner">Catering</h1>
 		<form action="<c:url value='/member/login/LoginAccess'/>" onsubmit="return chk();">
 			<div id="content">
 			<c:choose>

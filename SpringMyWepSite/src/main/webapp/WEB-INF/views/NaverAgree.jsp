@@ -118,7 +118,7 @@
         <option>English</option>
         <option>中文</option>
         </select>
-        <h1 id="banner">NAVER</h1>
+        <h1 id="banner">Catering</h1>
         <div id="content">
 
             <h4><input type="checkbox" id="allcheck">이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택), 프로모션 안내 메일 수신(선택)에 모두 동의합니다. </h4>

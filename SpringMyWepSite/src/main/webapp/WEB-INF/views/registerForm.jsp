@@ -301,7 +301,7 @@
 <body>
   <form action="<c:url value='/register'/>" method="post" enctype="multipart/form-data" onsubmit="return finalChk();">
         <div id="page">
-            <h1 id="banner">NAVER</h1>
+            <h1 id="banner">Catering</h1>
             <div id="content">
 
                 <h4>아이디</h4>
