@@ -21,7 +21,7 @@
 	<!-- css폴더등록하기위해서 /css 요청이 들어오면 /css/안에 있는 자원에 직접 접근하겠다, 자원으로 사용하겠다 -->
 	<resources mapping="/css/**" location="/css/" />
 
-
+<!-- 파일 저장 -->
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding">
@@ -59,7 +59,7 @@
 		p:driverClassName="com.mysql.cj.jdbc.Driver"
 		p:url="jdbc:mysql://localhost/openproject?useSSL=false&amp;chracterEncoding=utf-8&amp;serverTimezone=UTC"
 		p:username="root"
-		p:password="1234"/>
+		p:password="admin"/>
 
 
 	<!-- jdbcTemplate 빈 등록 - DAO에 주입 -->
@@ -116,10 +116,15 @@
 	<!-- @Transactional 애노테이션 활성화 설정 -->
 
 
-	<!-- <interceptors> <interceptor> <mapping path="/member/**" /> <exclude-mapping 
-		path="/member/login/**" /> <exclude-mapping path="/resources/**" /> <beans:bean 
-		class="Interceptor.AuthCheckInterceptior" /> </interceptor> </interceptors> -->
-
+<!-- 	< <interceptors> 
+	<interceptor> 
+	<mapping path="/member/**" /> 
+	<exclude-mapping path="/member/login/**" /> 
+	<exclude-mapping path="/resources/**" /> 
+	<beans:bean	class="Interceptor.AuthCheckInterceptior" /> 
+	</interceptor> 
+	</interceptors> 
+ -->
 	<!-- 메일 보내기 -->
 	<beans:bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
