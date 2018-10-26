@@ -53,7 +53,6 @@ public class MailSenderController {
 	}
 	
 	//임시비밀번호 담긴 메일 보내기
-
 	@RequestMapping(value="findPw", method=RequestMethod.POST)
 	public String findPw(@RequestParam("userId") String userId
 			,@RequestParam("email") String email,Model model) throws ServiceException, UnsupportedEncodingException {
@@ -77,7 +76,6 @@ public class MailSenderController {
 	}
 	
 	//메일에서 비번 받고 폼으로 접근
-
 	@RequestMapping(value="changePw",method=RequestMethod.GET)
 	public String changePwForm(@RequestParam("userId") String userId,Model model) {
 		model.addAttribute("userId",userId);
